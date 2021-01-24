@@ -1,0 +1,35 @@
+---
+title: "vaccineAnalysis"
+author: "Jeff Krueger"
+date: "1/23/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+install.packages('ggplot2')
+```
+
+
+```{r cars}
+country_vaccinations <- read.csv("C:\\Users\\Jeff\\Documents\\R Studio Projects\\Covid_Vaccine\\country_vaccinations.csv")
+```
+
+```{r subset_vaccine_data}
+library(ggplot2)
+
+USA_vaccinations <- country_vaccinations[ which (country_vaccinations$iso_code == "USA"), ]
+UK_vaccinations <- country_vaccinations[ which (country_vaccinations$iso_code == "GBR"), ]
+FRA_vaccinations <- country_vaccinations[ which (country_vaccinations$iso_code == "FRA"), ]
+ITA_vaccinations <- country_vaccinations[ which (country_vaccinations$iso_code == "ITA"), ]
+
+ggplot(data = USA_vaccinations, aes(x=date, y=daily_vaccinations, group = 1))+
+geom_line()+
+geom_point()
+
+
+
+#help(plot)
+#plot(USA_vaccinations$date, USA_vaccinations$daily_vaccinations,  type ="l", xlim = c(1,1000000))
+
+```
